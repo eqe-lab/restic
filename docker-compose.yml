@@ -11,9 +11,18 @@ services:
     environment:
       EXEC_INTERVAL_MINUTE: 10
       RUN_ON_STARTUP: true
-      RESTIC_USER: $USER
-      RESTIC_PASSWORD: '%24---%40'
-      # %24 means $, %40 means @
+      RESTIC_USER_FILE: /run/secrets/USERNAME
+      RESTIC_PASSWORD_FILE: /run/secrets/PASSWORD
       # DEBUG: true
       RESTIC_HOST: restic-lab.phys.ethz.ch
+    secrets:
+      - USERNAME
+      - PASSWORD
+
+secrets:
+  USERNAME:
+    file: ./secrets/USERNAME
+  PASSWORD:
+    file: ./secrets/PASSWORD
+
       

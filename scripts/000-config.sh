@@ -2,13 +2,15 @@
 
 RESTIC_DIR="${HOME}/.backupbox-phys"
 
-if [ -z "$RESTIC_USER" ]; then
-    echo "Please provide your restic user from the backupbox web interface: "
+if [ -z $RESTIC_HOST ]; then
+    echo "Please provide your restic host from the backupbox web interface: "
     exit 1
 fi
 
-if [ -z $RESTIC_HOST ]; then
-    echo "Please provide your restic host from the backupbox web interface: "
+if [ -f "$RESTIC_USER_FILE" ]; then
+    RESTIC_USER=$(cat $RESTIC_USER_FILE)
+elif [ -z "$RESTIC_USER" ]; then
+    echo "Please provide your restic user from the backupbox web interface: "
     exit 1
 fi
 
